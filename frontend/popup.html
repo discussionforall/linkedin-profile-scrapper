@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Profile Scraper</title>
+  <style>
+    #jsonOutput {
+      white-space: pre-wrap;
+      background-color: #f5f5f5;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+     
+    }
+    .body_container{
+      background-color: #347ab3;
+    }
+    .body_container > h1{
+      color: white;
+    }
+    .fill_btn {
+    background: #578fbb;;
+    border: 1px solid white;
+    padding: 7px 10px;
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+    border-radius: 10px;
+    margin-right: 5px;
+    
+}
+.fill_btn:hover{
+  background-color: #30628b;
+}
+#sendDataBtn {
+    display: flex;
+    margin-left: auto;
+    margin-top: 6px;
+}   
+:where(#fillSpeakerBtn, #fillTopicBtn, #fillWorkspaceBtn,#sendDataBtn):disabled{
+  opacity: 0.6;
+  cursor: not-allowed ;
+
+}
+#loader{
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000077;
+  background-repeat: no-repeat;
+  background-size: 15%;
+  background-position: 50% 50%;
+  background-image: url("/loading.gif");
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+  </style>
+</head>
+<body class="body_container">
+  <h1>LinkedIn Profile Scraper</h1>
+  
+  <button id="fillSpeakerBtn" class="fill_btn" disabled>Fill Speaker</button>
+  <button id="fillTopicBtn" class="fill_btn" disabled>Fill Topic</button>
+  <button id="fillWorkspaceBtn" class="fill_btn" disabled>Fill Workspace</button>
+  <div id="loader" class="loader" style="display:none;"></div>
+  <button id="clearBtn" class="fill_btn">Clear</button>
+  <textarea id="jsonOutput" rows="20" cols="55"></textarea>
+  <button id="sendDataBtn" class="fill_btn" disabled>Create Workspace</button>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

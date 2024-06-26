@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "LinkedIn Profile Scraper",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "frontend/popup.html",
+    "default_icon": {
+        "16": "logo_text.png",
+        "48": "logo_text.png",
+        "128": "logo_text.png"
+      }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.linkedin.com/*"],
+      "js": ["frontend/content.js"]
+    }
+  ]
+}

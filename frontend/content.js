@@ -20,10 +20,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       email: email,
       imageUrl: document.querySelector('.pv-top-card__photo img')?.src || '',
       name: document.querySelector('.text-heading-xlarge.inline.t-24.v-align-middle.break-words')?.textContent.trim() || '',
+      headline: document.querySelector('.text-body-medium.break-words')?.textContent.trim() || '',
       about: document.querySelector('div.display-flex.ph5.pv3 > div > div > div > span')?.textContent.trim() || '',
       contentPillars: servicesText ? servicesText.split('•').map(service => service.trim()) : []
     };
-    console.log('Sending speaker data:', profileData);
     sendResponse(profileData);
   }
 
@@ -44,7 +44,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     };
     sendResponse(workspaceData);
   }
-
 
 });
 

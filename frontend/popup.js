@@ -7,6 +7,7 @@ let profileData = {
     email: "",
     imageUrl: "",
     name: "",
+    headline: "",
     about: "",
     contentPillars: ["", ""]
   },
@@ -43,10 +44,8 @@ const saveProfileData = () => {
 
 // Function to send data to API
 const sendData = (data) => {
-  console.log("Data to send:", data);
   document.getElementById('loader').style.display = 'block';
-  
-  fetch('https://test.zync.ai/api/quick-start-workspace', {
+  fetch('https://app.zync.ai/api/quick-start-workspace', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -55,7 +54,6 @@ const sendData = (data) => {
   })
   .then(response => response.json())
   .then(data => {
-    console.log('Success:', data);
     document.getElementById('loader').style.display = 'none';
     if(data.error){
       alert(`Error: ${data.error}`);
@@ -132,6 +130,7 @@ document.getElementById('clearBtn').addEventListener('click', () => {
       email: "",
       imageUrl: "",
       name: "",
+      headline: "",
       about: "",
       contentPillars: ["", ""]
     },

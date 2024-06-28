@@ -24,6 +24,7 @@ app.get('/linkedin-profile', async (req, res) => {
         email: getTextContent('div.pv-profile-section__section-info.section-info section.pv-contact-info__contact-type a[href^="mailto:"]'),
         imageUrl: getSrc('.pv-top-card__photo img'),
         name: getTextContent('.text-heading-xlarge.inline.t-24.v-align-middle.break-words'),
+        headline: getTextContent('.text-body-medium.break-words'),
         about: getTextContent('div.display-flex.ph5.pv3 > div > div > div > span'),
         services: Array.from(document.querySelectorAll('li.pvs-list__item--with-top-padding .inline-show-more-text--is-collapsed > span > strong')).map(el => el.textContent.trim())
       };

@@ -12,9 +12,9 @@ let profileData = {
     contentPillars: ["", ""]
   },
   brandKit: {
-      primaryColor: "#00539C",
-      accentColor: "#FFD662"
-    },
+    primaryColor: "#00539C",
+    accentColor: "#FFD662"
+  },
   topic: {
     recentArticle: ""
   }
@@ -26,7 +26,14 @@ const updateJsonOutput = () => {
   jsonOutput.value = JSON.stringify(profileData, null, 2);
 };
 
-// Persist data across different pages
+// Function to save profile data to local storage
+const saveProfileData = () => {
+  chrome.storage.local.set({ profileData: JSON.stringify(profileData) }, () => {
+    console.log('Profile data saved');
+  });
+};
+
+// Function to load profile data from local storage
 const loadProfileData = () => {
   chrome.storage.local.get(['profileData'], (result) => {
     if (result.profileData) {
@@ -36,11 +43,25 @@ const loadProfileData = () => {
   });
 };
 
-// Save profile data to local storage
-const saveProfileData = () => {
-  chrome.storage.local.set({ profileData: JSON.stringify(profileData) }, () => {
-  });
+// Function to handle textarea changes
+const handleTextareaChange = () => {
+  try {
+    profileData = JSON.parse(document.getElementById('jsonOutput').value);
+    saveProfileData();
+  } catch (error) {
+    console.error('Invalid JSON format:', error);
+    alert('Invalid JSON format. Please correct it before leaving the textarea.');
+  }
 };
+
+// Initial setup
+document.addEventListener('DOMContentLoaded', () => {
+  loadProfileData();
+  updateJsonOutput();
+
+  // Add event listener to the textarea to save data on change
+  document.getElementById('jsonOutput').addEventListener('input', handleTextareaChange);
+});
 
 // Function to send data to API
 const sendData = (data) => {
@@ -58,7 +79,7 @@ const sendData = (data) => {
     if(data.error){
       alert(`Error: ${data.error}`);
     }
-      console.log('data.result.user Success:', data.result.user);
+    console.log('Success:', data.result.user);
     if(data.result.user){
       alert('Your data has been submitted successfully.');
     }

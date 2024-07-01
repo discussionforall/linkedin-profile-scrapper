@@ -182,7 +182,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       document.getElementById('fillWorkspaceBtn').disabled = false;
       document.getElementById('fillSpeakerBtn').disabled = true;
       document.getElementById('fillTopicBtn').disabled = true;
-    } else if (url.includes('linkedin.com/feed/update/')) {
+    } else if (url.includes('linkedin.com/feed/update/') || url.includes('linkedin.com/posts/')) {
       document.getElementById('fillTopicBtn').disabled = false;
       document.getElementById('fillSpeakerBtn').disabled = true;
       document.getElementById('fillWorkspaceBtn').disabled = true;

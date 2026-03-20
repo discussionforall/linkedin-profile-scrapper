@@ -4,7 +4,11 @@
   "version": "1.0",
   "permissions": [
     "activeTab",
-    "storage"
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.linkedin.com/*"
   ],
   "action": {
     "default_popup": "frontend/popup.html",
@@ -16,8 +20,9 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.linkedin.com/*"],
-      "js": ["frontend/content.js"]
+      "matches": ["https://www.linkedin.com/*", "https://*.linkedin.com/*"],
+      "js": ["frontend/content.js"],
+      "run_at": "document_idle"
     }
   ]
 }
